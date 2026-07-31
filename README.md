@@ -1,19 +1,17 @@
-# 🥷 CaterNinja-Inspired Catering Platform
+# 🥂 Richard Catering | Premium Catering Platform
 
-An end-to-end, commercial-grade online catering booking platform and instant menu configurator modeled directly after **[CaterNinja.com](https://caterninja.com)**. Designed for ordering bulk party food, luxury buffet setups, corporate meal boxes, and interactive live cooking stations across major Indian cities (Bengaluru, Mumbai, Pune, Delhi-NCR, Hyderabad, Chennai).
+An end-to-end, commercial-grade online catering booking platform designed for luxury events, corporate gatherings, weddings, and private parties. Built with a focus on **premium design aesthetics**, smooth animations, and a seamless booking experience.
 
 ---
 
 ## 🏬 Business Core Offerings & Product Lines
 
-Modelled after CaterNinja's proven event catering model:
-
 | Product Line | Format & Packaging | Ideal Event Type | Key Features |
 |---|---|---|---|
-| **NinjaBox** | Hot Bulk Delivery in 3-Layer Insulated Eco Containers | House Parties, Birthdays (10–50 Pax) | Delivered piping hot; includes complimentary bio-degradable disposables; zero setup hassle. |
-| **NinjaBuffet** | Luxury Chafing Dish Setup + Uniformed Staff | Weddings, Receptions, Corporate (25–500+ Pax) | Premium stainless steel warming dishes, dressed server staff, crockery, setup & post-event cleanup. |
-| **MealBox** | Individual 5-Compartment Hygienic Thali Trays | Office Lunches, Seminars, Conferences (15+ Pax) | Individual sealed portions (Starter + 2 Mains + Dal + Rice + Roti + Dessert); zero cross-contamination. |
-| **NinjaLive** | Interactive Live Cooking Stations | Anniversaries, Premium Gatherings (30+ Pax) | On-site live Woodfire Pizza, Pasta Bar, Live Chaat & BBQ stations manned by expert chefs. |
+| **Premium Box** | Hot Bulk Delivery in 3-Layer Insulated Eco Containers | House Parties, Birthdays (10–50 Pax) | Delivered piping hot; includes complimentary bio-degradable disposables; zero setup hassle. |
+| **Luxury Buffet** | Luxury Chafing Dish Setup + Uniformed Staff | Weddings, Receptions, Corporate (25–500+ Pax) | Premium stainless steel warming dishes, dressed server staff, crockery, setup & post-event cleanup. |
+| **Executive MealBox**| Individual 5-Compartment Hygienic Thali Trays | Office Lunches, Seminars, Conferences (15+ Pax) | Individual sealed portions (Starter + 2 Mains + Dal + Rice + Roti + Dessert); zero cross-contamination. |
+| **Live Stations** | Interactive Live Cooking Stations | Anniversaries, Premium Gatherings (30+ Pax) | On-site live Woodfire Pizza, Pasta Bar, Live Chaat & BBQ stations manned by expert chefs. |
 
 ---
 
@@ -29,40 +27,33 @@ Modelled after CaterNinja's proven event catering model:
    - Desserts & Add-ons (Kesari Rasmalai, Hot Gulab Jamun, Moong Dal Halwa, Live Counters).
 3. **Transparent Price Calculation**:
    - Real-time per-head rate calculation.
-   - Volume discount tiers (5% off for 30+ pax, 10% off for 50+ pax, 15% off for 100+ pax).
+   - Volume discount tiers.
    - Optional uniformed server fee & cutlery add-on toggles.
-   - 5% GST and free delivery calculations.
+   - Tax and delivery calculations.
 
 ---
 
 ## 💻 Technical Architecture & Tech Stack
 
-Built with a full-stack **TypeScript** setup:
+Built with a full-stack **TypeScript** setup optimized for performance, SEO, and visual excellence:
 
-### Frontend
-- **Framework**: React 18 with Vite & TypeScript
-- **Styling**: Tailwind CSS v3 with custom CaterNinja color theme (`#FF6B00` Orange & `#1A1D20` Dark Charcoal)
-- **Animations**: Framer Motion
+### Framework & Backend
+- **Framework**: Next.js (App Router)
+- **API Routes**: Next.js Route Handlers (`src/app/api`)
+- **Language**: TypeScript
+
+### Styling & UI
+- **Styling**: Tailwind CSS with custom Richard Catering luxury color theme (Cream, Forest Green, Gold, Charcoal).
+- **UI Components**: shadcn/ui
 - **Icons**: Lucide React
+
+### Animations & Interactions
+- **Smooth Scroll**: Lenis
+- **Animations**: GSAP, Framer Motion, Tailwind Animate
+- **Carousels & Media**: Embla Carousel, PhotoSwipe
+
+### Forms & Validation
 - **Validation**: React Hook Form with Zod resolver
-
-### Backend
-- **Runtime**: Node.js
-- **API Framework**: Express.js with TypeScript (`ts-node-dev`)
-
-### Modular `/libraries` Directory
-```
-libraries/
-├── pricing/
-│   ├── calculator.ts        # Pricing, discount logic & GST calculation engine
-│   └── menuData.ts          # Categorized food catalog (Veg/Non-Veg)
-├── forms/
-│   └── bookingSchema.ts     # Zod schema for Indian phone & city validation
-├── animations/
-│   └── presets.ts           # Framer Motion transition variants & modal pops
-└── ui/
-    └── index.tsx            # Reusable UI primitives (Button, Card, Badge)
-```
 
 ---
 
@@ -73,14 +64,16 @@ libraries/
 npm install
 ```
 
-### 2. Run Development Servers
-- **Frontend App**: `npm run dev` (Runs at `http://localhost:3000`)
-- **Backend API**: `npm run dev:server` (Runs at `http://localhost:5000`)
-
-### 3. Type Checking & Production Build
+### 2. Run Development Server
 ```bash
-npm run typecheck
+npm run dev
+```
+Runs the Next.js app at `http://localhost:3000`.
+
+### 3. Production Build
+```bash
 npm run build
+npm start
 ```
 
 ---
@@ -95,5 +88,8 @@ npm run build
 
 ---
 
-## 🏢 Reference Website
-Reference website: **[https://caterninja.com](https://caterninja.com)**
+## 👨‍💻 Team Workflow
+
+This repository is structured to support multiple developers without version control issues. Feature branches are actively maintained for:
+- `skygod-*`: Hero animations, UI components, booking forms.
+- `pratyksh-*`: API integrations, menu services, gallery modules.
