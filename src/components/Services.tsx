@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Package, UtensilsCrossed, Box, Flame, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button, Badge } from '../../libraries/ui';
-import { SERVICE_TIERS } from '../../libraries/pricing/calculator';
 import { fadeIn, staggerContainer } from '../../libraries/animations/presets';
 
 interface ServicesProps {
@@ -14,15 +13,14 @@ export const Services: React.FC<ServicesProps> = ({ onSelectTier, activeTier }) 
   const serviceCards = [
     {
       key: 'ninjabox',
-      title: 'NinjaBox',
-      subtitle: 'Bulk Food Delivery in Insulated Packaging',
+      title: 'Richard Box',
+      subtitle: 'Hot Bulk Delivery in Eco Insulated Containers',
       icon: Package,
-      badge: 'Most Popular for Parties',
-      badgeVariant: 'orange' as const,
+      badge: 'Popular for House Parties',
       features: [
         'Delivered piping hot in insulated leak-proof boxes',
         'Includes complimentary bio-degradable disposables',
-        'Customizable 100+ menu options',
+        'Customizable 100+ gourmet menu options',
         'Zero setup hassle - open & serve directly'
       ],
       startingPrice: '₹280 / Pax',
@@ -30,11 +28,10 @@ export const Services: React.FC<ServicesProps> = ({ onSelectTier, activeTier }) 
     },
     {
       key: 'ninjabuffet',
-      title: 'NinjaBuffet',
-      subtitle: 'Full Service Luxury Buffet Setup',
+      title: 'Richard Buffet',
+      subtitle: 'Luxury Chafing Dish & Server Setup',
       icon: UtensilsCrossed,
       badge: 'Full Service Experience',
-      badgeVariant: 'green' as const,
       features: [
         'Luxury stainless steel chafing dishes & warming stations',
         'Dressed uniform serving staff included',
@@ -46,11 +43,10 @@ export const Services: React.FC<ServicesProps> = ({ onSelectTier, activeTier }) 
     },
     {
       key: 'mealbox',
-      title: 'MealBox',
+      title: 'Meal Box',
       subtitle: 'Individual 5-Compartment Meal Trays',
       icon: Box,
-      badge: 'Corporate Choice',
-      badgeVariant: 'blue' as const,
+      badge: 'Corporate Preferred',
       features: [
         'Individual sealed hygienic compartment containers',
         'Starter + 2 Mains + Dal + Rice + Roti + Dessert',
@@ -62,11 +58,10 @@ export const Services: React.FC<ServicesProps> = ({ onSelectTier, activeTier }) 
     },
     {
       key: 'ninjalive',
-      title: 'NinjaLive',
+      title: 'Richard Live',
       subtitle: 'Interactive Live Cooking Stations',
       icon: Flame,
       badge: 'Food-tainment',
-      badgeVariant: 'orange' as const,
       features: [
         'Live Woodfire Pizza, Pasta Bar, & Chaat counters',
         'Expert uniformed chefs cooking live on-site',
@@ -79,18 +74,21 @@ export const Services: React.FC<ServicesProps> = ({ onSelectTier, activeTier }) 
   ];
 
   return (
-    <section id="packages" className="py-20 bg-white border-t border-gray-100">
+    <section id="packages" className="py-24 bg-[#0A0A0A] text-white border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <Badge variant="orange" className="text-xs uppercase tracking-wider">Catering Solutions</Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-            Tailored Catering Services For Every Scale
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span className="text-xs uppercase tracking-[0.25em] text-amber-400 font-semibold">Catering Solutions</span>
+          <h2 className="text-3xl sm:text-5xl font-serif tracking-tight text-white font-light">
+            Tailored Offerings For Every Scale
           </h2>
-          <p className="text-gray-600 text-base">
-            Whether you want hassle-free bulk box delivery or full-service buffet setups with uniform servers, NinjaCater has you covered.
+          <p className="text-gray-400 text-sm sm:text-base font-light max-w-2xl mx-auto">
+            Whether you desire hassle-free hot delivery boxes or full-service luxury buffets with uniform servers, Richard Catering delivers perfection.
           </p>
         </div>
 
+        {/* Services Cards */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -108,47 +106,50 @@ export const Services: React.FC<ServicesProps> = ({ onSelectTier, activeTier }) 
                 variants={fadeIn}
                 className={`relative rounded-3xl p-6 transition-all duration-300 flex flex-col justify-between border ${
                   isSelected
-                    ? 'bg-orange-50/40 border-ninja-orange shadow-xl ring-2 ring-ninja-orange/30'
-                    : 'bg-white border-gray-200 hover:border-orange-300 hover:shadow-lg'
+                    ? 'bg-[#181818] border-amber-400 shadow-2xl shadow-amber-500/10 ring-1 ring-amber-400/30'
+                    : 'bg-[#121212] border-white/10 hover:border-amber-400/50 hover:bg-[#161616]'
                 }`}
               >
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${isSelected ? 'bg-ninja-orange text-white' : 'bg-gray-100 text-gray-700'}`}>
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${isSelected ? 'bg-amber-400 text-black font-bold' : 'bg-white/5 text-amber-400'}`}>
                       <Icon className="w-6 h-6" />
                     </div>
-                    <Badge variant={service.badgeVariant}>{service.badge}</Badge>
+                    <Badge className="bg-amber-400/10 text-amber-400 border-amber-400/30 text-[10px] uppercase tracking-wider">{service.badge}</Badge>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
-                    <p className="text-xs text-gray-500 mt-1">{service.subtitle}</p>
+                    <h3 className="text-xl font-serif font-light text-white tracking-wide">{service.title}</h3>
+                    <p className="text-xs text-gray-400 mt-1">{service.subtitle}</p>
                   </div>
 
-                  <div className="py-2 border-y border-gray-100">
-                    <span className="text-xs text-gray-400 font-medium">Starting From</span>
-                    <div className="text-lg font-extrabold text-ninja-orange">{service.startingPrice}</div>
-                    <div className="text-[11px] text-gray-500 font-medium">{service.idealFor}</div>
+                  <div className="py-3 border-y border-white/10 space-y-1">
+                    <span className="text-[10px] text-gray-400 uppercase tracking-widest">Starting From</span>
+                    <div className="text-xl font-serif text-amber-400">{service.startingPrice}</div>
+                    <div className="text-[11px] text-gray-400">{service.idealFor}</div>
                   </div>
 
                   <ul className="space-y-2.5 pt-1">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs text-gray-600">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                      <li key={idx} className="flex items-start gap-2 text-xs text-gray-300 font-light">
+                        <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-gray-100">
+                <div className="pt-6 mt-6 border-t border-white/10">
                   <Button
                     onClick={() => onSelectTier(service.key as any)}
-                    variant={isSelected ? 'primary' : 'outline'}
-                    className="w-full text-xs"
+                    className={`w-full text-xs font-bold uppercase tracking-wider rounded-2xl py-3 ${
+                      isSelected
+                        ? 'bg-amber-400 text-black hover:bg-amber-300'
+                        : 'bg-white/5 border border-white/15 text-white hover:border-amber-400 hover:text-amber-400'
+                    }`}
                   >
                     <span>{isSelected ? 'Selected' : 'Select Package'}</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>
                 </div>
               </motion.div>
