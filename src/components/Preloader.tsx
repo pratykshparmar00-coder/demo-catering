@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -10,14 +12,16 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Precise Awwwards-style fast timer counter
     const startTime = Date.now();
-    const duration = 1800; // 1.8 seconds
+    const duration = 2200;
 
     const updateProgress = () => {
       const elapsed = Date.now() - startTime;
-      const calculated = Math.min(100, Math.floor((elapsed / duration) * 100));
-      
+      // Eased progress for premium feel
+      const linear = Math.min(1, elapsed / duration);
+      const eased = 1 - Math.pow(1 - linear, 3);
+      const calculated = Math.min(100, Math.floor(eased * 100));
+
       setProgress(calculated);
 
       if (calculated < 100) {
@@ -26,7 +30,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
         setTimeout(() => {
           setIsLoaded(true);
           if (onComplete) onComplete();
-        }, 400);
+        }, 500);
       }
     };
 
@@ -37,83 +41,81 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
     <AnimatePresence>
       {!isLoaded && (
         <div className="fixed inset-0 z-[9999] pointer-events-none select-none overflow-hidden font-sans">
-          
-          {/* Top Curtain Panel (Slides UP on Exit) */}
+          {/* Top panel slides up */}
           <motion.div
             initial={{ y: 0 }}
             exit={{
               y: '-100%',
-              transition: { duration: 0.85, ease: [0.76, 0, 0.24, 1] }
+              transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] }
             }}
-            className="absolute top-0 left-0 w-full h-[50%] bg-[#080808] border-b border-white/5 flex items-end justify-center pb-2 z-10"
+            className="absolute top-0 left-0 w-full h-[50%] bg-rc-forest flex items-end justify-center pb-3 z-10"
           >
-            {/* Upper Portion of Logo Mask */}
             <div className="relative overflow-hidden px-4 text-center">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-4xl sm:text-7xl lg:text-8xl font-serif tracking-tight text-white uppercase font-light leading-none"
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="font-serif tracking-tight text-rc-cream leading-none"
               >
-                RICHARD <span className="italic text-amber-400 font-serif font-normal">CATERING</span>
+                <span className="text-4xl sm:text-6xl lg:text-7xl font-light">Richard</span>
+                <span className="text-4xl sm:text-6xl lg:text-7xl italic font-light ml-4 text-rc-goldLight">Catering</span>
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Bottom Curtain Panel (Slides DOWN on Exit) */}
+          {/* Bottom panel slides down */}
           <motion.div
             initial={{ y: 0 }}
             exit={{
               y: '100%',
-              transition: { duration: 0.85, ease: [0.76, 0, 0.24, 1] }
+              transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] }
             }}
-            className="absolute bottom-0 left-0 w-full h-[50%] bg-[#080808] border-t border-white/5 flex items-start justify-center pt-2 z-10"
+            className="absolute bottom-0 left-0 w-full h-[50%] bg-rc-forest flex items-start justify-center pt-3 z-10"
           >
-            {/* Lower Portion & Subtitle */}
             <div className="relative flex flex-col items-center space-y-4 px-4 text-center">
               <motion.p
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.6 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                className="text-[10px] sm:text-xs tracking-[0.35em] text-gray-300 uppercase font-light"
+                animate={{ opacity: 0.5 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="text-[10px] sm:text-xs tracking-[0.35em] text-rc-sand uppercase font-light"
               >
-                ARTISANAL GASTRONOMY • EST. 2026
+                Premium Culinary Experiences
               </motion.p>
             </div>
           </motion.div>
 
-          {/* Center Liquid Fill Text SVG & Progress Overlay */}
+          {/* Progress overlay */}
           <div className="absolute inset-0 z-20 flex flex-col justify-between p-8 sm:p-14 pointer-events-none">
-            {/* Top Bar Header */}
-            <div className="flex justify-between items-center text-[10px] tracking-[0.3em] uppercase text-amber-400 font-semibold">
-              <span>YUCCA DESIGN SPEC</span>
-              <span>CATERING ENGINE</span>
+            {/* Top bar */}
+            <div className="flex justify-between items-center text-[10px] tracking-[0.3em] uppercase text-rc-goldLight font-medium">
+              <span>Est. 2024</span>
+              <span>Loading</span>
             </div>
 
-            {/* Middle Liquid Fill Bar Progress Indicator */}
-            <div className="max-w-md w-full mx-auto space-y-3 text-center">
-              <div className="relative w-full h-[3px] bg-white/10 rounded-full overflow-hidden">
+            {/* Center progress bar */}
+            <div className="max-w-sm w-full mx-auto space-y-3 text-center">
+              <div className="relative w-full h-[2px] bg-white/10 rounded-full overflow-hidden">
                 <motion.div
-                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-400 via-orange-400 to-amber-300"
+                  className="absolute top-0 left-0 h-full bg-rc-goldLight"
                   style={{ width: `${progress}%` }}
+                  transition={{ duration: 0.1 }}
                 />
               </div>
-              <div className="text-[10px] font-mono tracking-widest text-gray-400 uppercase">
-                LOADING EXPERIENCE • {progress}%
+              <div className="text-[10px] tracking-widest text-rc-sand/60 uppercase font-light">
+                {progress}%
               </div>
             </div>
 
-            {/* Bottom Counter Indicator */}
-            <div className="flex justify-between items-end text-xs font-mono text-gray-400 border-t border-white/10 pt-4">
-              <span className="text-[10px] tracking-[0.25em] text-gray-500 uppercase">
-                RICHARD CATERING PORTAL
+            {/* Bottom indicator */}
+            <div className="flex justify-between items-end text-rc-sand/40">
+              <span className="text-[10px] tracking-[0.25em] uppercase">
+                Richard Catering
               </span>
-              <span className="text-4xl sm:text-6xl font-serif text-amber-400 tracking-tight font-light">
+              <span className="text-3xl sm:text-5xl font-serif text-rc-goldLight/40 tracking-tight font-light">
                 {progress < 10 ? `0${progress}` : progress}
               </span>
             </div>
           </div>
-
         </div>
       )}
     </AnimatePresence>
