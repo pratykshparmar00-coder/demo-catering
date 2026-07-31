@@ -1,18 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Cinzel, Geist } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "../index.css";
 import { SmoothScroll } from "../components/SmoothScroll";
-import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
-const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel" });
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Richard Catering | Premier Online Catering & Instant Party Menu Builder",
-  description: "Crafting luxury culinary experiences for house parties, corporate buffets, and live counters with instant online quotes at Richard Catering.",
+  title: "Richard Catering | Premium Catering for Corporate, Weddings & Private Events",
+  description:
+    "Richard Catering delivers exceptional culinary experiences for corporate events, weddings, private gatherings, and daily office meals. Trusted by leading brands across India.",
+  keywords: "catering, corporate catering, wedding catering, private events, live counters, custom menus, premium catering India",
+  openGraph: {
+    title: "Richard Catering | Premium Catering Services",
+    description: "Exceptional culinary experiences for every occasion. Corporate, weddings, private events, and more.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -21,11 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body className={`${inter.variable} ${playfair.variable} ${cinzel.variable} font-sans antialiased bg-background text-foreground`}>
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+    <html lang="en">
+      <body
+        className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
+      >
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
