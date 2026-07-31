@@ -27,16 +27,16 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder, selectedCity }) => {
           <motion.div variants={fadeIn} className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100/80 border border-orange-200 text-ninja-orange text-xs font-bold shadow-2xs">
               <Flame className="w-4 h-4 fill-ninja-orange" />
-              <span>India's Most Trusted Caterer in {selectedCity}</span>
+              <span>Richard Catering • Premier Party Caterer in {selectedCity}</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.15]">
-              Gourmet Party Catering. <br />
-              <span className="gradient-text">Instant Quotes & Instant Menus.</span>
+              Richard Catering. <br />
+              <span className="gradient-text">Crafting Culinary Experiences.</span>
             </h1>
 
             <p className="text-lg text-gray-600 max-w-2xl font-normal leading-relaxed">
-              From intimate house parties of 10 to grand corporate buffets of 500+ guests. Choose from hot <strong className="text-gray-900 font-semibold">NinjaBox</strong> deliveries or full-service <strong className="text-gray-900 font-semibold">NinjaBuffet</strong> with luxury chafing dish setups.
+              From intimate house parties of 10 to grand corporate buffets of 500+ guests. Experience Richard Catering's signature hot gourmet delivery boxes or luxury chafing dish buffet setups.
             </p>
 
             {/* CTA Buttons */}

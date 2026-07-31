@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { Preloader } from '../components/Preloader';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { Services } from '../components/Services';
@@ -11,6 +12,7 @@ import { MenuItem, PriceBreakdown, calculateCateringQuote } from '../../librarie
 import { SAMPLE_MENU } from '../../libraries/pricing/menuData';
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
   const [selectedCity, setSelectedCity] = useState<string>('Bengaluru');
   const [activeTier, setActiveTier] = useState<'ninjabox' | 'ninjabuffet' | 'mealbox' | 'ninjalive'>('ninjabox');
   const [menuItems, setMenuItems] = useState<MenuItem[]>(SAMPLE_MENU);
@@ -59,6 +61,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900 font-sans">
+      {/* Site Preloader Animation for Richard Catering */}
+      <Preloader onComplete={() => setLoading(false)} />
+
       {/* Navigation Header */}
       <Header
         selectedCity={selectedCity}

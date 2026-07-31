@@ -11,8 +11,8 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel" });
 
 export const metadata: Metadata = {
-  title: "Premium Catering",
-  description: "Luxury catering services",
+  title: "Richard Catering | Premier Online Catering & Instant Party Menu Builder",
+  description: "Crafting luxury culinary experiences for house parties, corporate buffets, and live counters with instant online quotes at Richard Catering.",
 };
 
 export default function RootLayout({

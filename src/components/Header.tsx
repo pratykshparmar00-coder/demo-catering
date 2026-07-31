@@ -50,15 +50,15 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center gap-6">
-            <a href="#" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 rounded-xl bg-ninja-orange text-white flex items-center justify-center text-xl font-bold shadow-md shadow-orange-500/30 group-hover:scale-105 transition-transform">
-                🥷
+            <a href="#" className="flex items-center gap-2.5 group">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-ninja-orange to-amber-500 text-white flex items-center justify-center text-xl font-bold shadow-md shadow-orange-500/30 group-hover:scale-105 transition-transform">
+                👨‍🍳
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-extrabold tracking-tight text-gray-900 leading-none">
-                  Ninja<span className="text-ninja-orange">Cater</span>
+                  Richard <span className="text-ninja-orange">Catering</span>
                 </span>
-                <span className="text-[10px] text-gray-500 font-medium tracking-wide">Catering Made Simple</span>
+                <span className="text-[10px] text-gray-500 font-medium tracking-wide">Crafting Culinary Experiences</span>
               </div>
             </a>
 

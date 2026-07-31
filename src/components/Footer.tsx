@@ -100,11 +100,11 @@ export const Footer: React.FC = () => {
           
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-ninja-orange text-white flex items-center justify-center text-lg font-bold">
-                🥷
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-ninja-orange to-amber-500 text-white flex items-center justify-center text-lg font-bold">
+                👨‍🍳
               </div>
               <span className="text-lg font-extrabold text-white">
-                Ninja<span className="text-ninja-orange">Cater</span>
+                Richard <span className="text-ninja-orange">Catering</span>
               </span>
             </div>
             <p className="text-gray-400 leading-relaxed">
@@ -160,7 +160,7 @@ export const Footer: React.FC = () => {
 
         {/* Copyright */}
         <div className="pt-8 border-t border-gray-800 text-center text-[11px] text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <div>© {new Date().getFullYear()} NinjaCater Technologies Pvt. Ltd. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Richard Catering Technologies Pvt. Ltd. All rights reserved.</div>
           <div className="flex items-center gap-1">
             Built with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> using TypeScript, React & Node.js
           </div>
