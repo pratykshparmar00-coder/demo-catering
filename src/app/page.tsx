@@ -1,15 +1,16 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { Services } from './components/Services';
-import { MenuBuilder } from './components/MenuBuilder';
-import { BookingModal } from './components/BookingModal';
-import { Footer } from './components/Footer';
-import { MenuItem, PriceBreakdown, calculateCateringQuote } from '../libraries/pricing/calculator';
-import { SAMPLE_MENU } from '../libraries/pricing/menuData';
+import { Header } from '../components/Header';
+import { Hero } from '../components/Hero';
+import { Services } from '../components/Services';
+import { MenuBuilder } from '../components/MenuBuilder';
+import { BookingModal } from '../components/BookingModal';
+import { Footer } from '../components/Footer';
+import { MenuItem, PriceBreakdown, calculateCateringQuote } from '../../libraries/pricing/calculator';
+import { SAMPLE_MENU } from '../../libraries/pricing/menuData';
 
-
-export default function App() {
+export default function Home() {
   const [selectedCity, setSelectedCity] = useState<string>('Bengaluru');
   const [activeTier, setActiveTier] = useState<'ninjabox' | 'ninjabuffet' | 'mealbox' | 'ninjalive'>('ninjabox');
   const [menuItems, setMenuItems] = useState<MenuItem[]>(SAMPLE_MENU);
