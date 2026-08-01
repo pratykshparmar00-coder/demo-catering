@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, ArrowUpRight, Instagram, Linkedin, Facebook } from 'lucide-react';
 import { fadeUp } from '../../libraries/animations/presets';
+import { Logo } from './Logo';
 
 export const Footer: React.FC = () => {
   return (
@@ -14,8 +15,8 @@ export const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1 space-y-5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rc-forest flex items-center justify-center">
-                <span className="text-rc-cream font-serif text-lg font-light italic">R</span>
+              <div className="w-10 h-10 rounded-xl bg-rc-forest flex items-center justify-center border border-white/10">
+                <Logo className="w-5 h-5 text-rc-cream" fillColor="currentColor" />
               </div>
               <div>
                 <span className="text-lg font-serif tracking-tight text-white leading-none">

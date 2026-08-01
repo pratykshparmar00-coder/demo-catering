@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Menu, X, ArrowRight } from 'lucide-react';
+import { Logo } from './Logo';
 
 const NAV_LINKS = [
   { label: 'Services', href: '#services' },
@@ -36,8 +37,8 @@ export const Header: React.FC = () => {
         <div className="flex justify-between items-center h-20 lg:h-24">
           {/* Logo / Monogram */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl border border-rc-forest/20 bg-rc-forest flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-              <span className="text-rc-cream font-serif text-lg font-light italic">R</span>
+            <div className="w-10 h-10 rounded-xl border border-rc-forest/20 bg-rc-forest flex items-center justify-center transition-transform duration-500 group-hover:scale-105 shadow-sm">
+              <Logo className="w-5 h-5 text-rc-cream" fillColor="currentColor" />
             </div>
             <div className="flex flex-col">
               <span className="text-lg sm:text-xl font-serif tracking-tight text-rc-charcoal leading-none">
