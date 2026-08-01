@@ -48,15 +48,15 @@ export const FinalCTA: React.FC = () => {
             <div className="lg:col-span-4 flex lg:justify-end justify-center mt-8 lg:mt-0">
               {/* Slideshow element */}
               <div className="w-56 h-56 lg:w-72 lg:h-72 rounded-[2rem] bg-white/[0.04] border border-white/[0.08] relative overflow-hidden shadow-2xl">
-                <AnimatePresence>
+                <AnimatePresence mode="popLayout">
                   <motion.img
                     key={currentSlide}
                     src={SLIDES[currentSlide]}
                     alt={`Catering Slide ${currentSlide + 1}`}
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1, ease: "easeInOut" }}
+                    initial={{ x: '100%' }}
+                    animate={{ x: 0 }}
+                    exit={{ x: '-100%' }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 </AnimatePresence>
