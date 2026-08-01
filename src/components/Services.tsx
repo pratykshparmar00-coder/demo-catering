@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { fadeUp } from '../../libraries/animations/presets';
@@ -8,20 +8,96 @@ import { fadeUp } from '../../libraries/animations/presets';
 const SERVICES = [
   {
     title: 'Corporate Events',
-    description: 'Elevate your corporate events with curated menus designed for board meetings, conferences, team celebrations, and product launches. Custom menu planning, dietary accommodations, and seamless logistics.',
+    description: 'Elevate your business gatherings with sophisticated culinary experiences designed to impress clients and inspire your team.',
     href: '#consultation',
   },
   {
-    title: 'Wedding Catering',
-    description: 'Create unforgettable wedding feasts with our bespoke menus, luxury presentation, and white-glove service. Multi-cuisine options, live cooking stations, and décor coordination included.',
+    title: 'Weddings',
+    description: 'Transform your special day with unforgettable gastronomy, meticulously planned and flawlessly executed for your perfect celebration.',
     href: '#consultation',
   },
   {
     title: 'Private Dining',
-    description: 'From intimate house parties to grand birthday celebrations and anniversaries, we craft personalized dining experiences that delight every palate. Tailored to your vision.',
+    description: 'Experience restaurant-quality dining in the comfort of your own space, with customized tasting menus and private chef services.',
     href: '#consultation',
   },
 ];
+
+const TypewriterText = ({ text, isHovered }: { text: string; isHovered: boolean }) => {
+  return (
+    <span className="inline-block text-[18px] lg:text-[22px] font-serif font-light text-rc-charcoal/85 leading-relaxed">
+      {text.split('').map((char, index) => (
+        <motion.span
+          key={index}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ 
+            duration: 0.15, 
+            delay: isHovered ? 0.45 + index * 0.015 : 0 
+          }}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </span>
+  );
+};
+
+const FlipCard = ({ service }: { service: typeof SERVICES[0] }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div 
+      className="group relative h-[280px] lg:h-[300px] w-full cursor-pointer"
+      style={{ perspective: '1200px' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <motion.div
+        className="w-full h-full relative"
+        animate={{ rotateY: isHovered ? 180 : 0 }}
+        transition={{ duration: 0.85, ease: "easeInOut" }}
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        {/* Front Face */}
+        <div 
+          className="absolute inset-0 bg-[#F7F4EE] rounded-3xl p-8 lg:p-10 flex flex-col justify-between shadow-sm border border-rc-border/50"
+          style={{ backfaceVisibility: 'hidden' }}
+        >
+          <h3 className="text-2xl lg:text-[28px] font-serif font-light text-rc-charcoal mb-4">
+            {service.title}
+          </h3>
+          <div className="mt-auto">
+            <span className="inline-flex items-center gap-2 text-[13px] text-rc-forest font-semibold transition-transform duration-300 group-hover:translate-x-1">
+              Hover to explore
+              <ArrowRight className="w-4 h-4" />
+            </span>
+          </div>
+        </div>
+
+        {/* Back Face */}
+        <div 
+          className="absolute inset-0 bg-[#F7F4EE] rounded-3xl p-8 lg:p-10 flex flex-col shadow-xl border border-rc-border/80"
+          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+        >
+          <div className="flex-1 flex flex-col justify-center">
+            <TypewriterText text={service.description} isHovered={isHovered} />
+          </div>
+
+          <div className="mt-auto">
+            <a
+              href={service.href}
+              className="inline-flex items-center gap-2 text-[13px] text-rc-forest font-semibold hover:text-rc-charcoal transition-colors"
+            >
+              Tell me more
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 export const Services: React.FC = () => {
   return (
@@ -42,9 +118,9 @@ export const Services: React.FC = () => {
           </span>
         </motion.div>
 
-        {/* Stacked Service Rows */}
-        <div className="space-y-0">
-          {SERVICES.map((service, i) => (
+        {/* 3-Column Flip Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {SERVICES.map((service) => (
             <motion.div
               key={service.title}
               variants={fadeUp}
@@ -52,28 +128,7 @@ export const Services: React.FC = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 py-10 lg:py-14 border-b border-rc-border group">
-                {/* Left: Large Serif Title */}
-                <div className="lg:col-span-5">
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-light text-rc-charcoal leading-tight group-hover:text-rc-forest transition-colors duration-500">
-                    {service.title}
-                  </h3>
-                </div>
-
-                {/* Right: Description + Arrow Link */}
-                <div className="lg:col-span-7 flex flex-col justify-center space-y-5">
-                  <p className="text-[15px] text-rc-textLight leading-relaxed max-w-xl">
-                    {service.description}
-                  </p>
-                  <a
-                    href={service.href}
-                    className="inline-flex items-center gap-2 text-sm text-rc-forest font-medium group-hover:gap-3 transition-all duration-300"
-                  >
-                    Learn more
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
+              <FlipCard service={service} />
             </motion.div>
           ))}
         </div>

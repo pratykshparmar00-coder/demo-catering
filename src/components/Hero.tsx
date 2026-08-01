@@ -96,17 +96,21 @@ export const Hero: React.FC = () => {
               <a
                 key={card.title}
                 href={card.href}
-                className="group relative bg-white/60 backdrop-blur-xl rounded-2xl border border-rc-border/50 p-6 sm:p-7 hover:bg-white/80 hover:border-rc-forest/20 transition-all duration-500 hover:shadow-lg"
+                className="group relative bg-white/60 backdrop-blur-xl rounded-2xl border border-rc-border/50 p-6 sm:p-7 hover:bg-white hover:border-rc-forest/20 transition-all duration-500 hover:shadow-xl flex flex-col h-[180px] lg:h-[200px]"
               >
-                <h3 className="text-lg sm:text-xl font-serif font-light text-rc-charcoal mb-2">
+                <h3 className="text-lg sm:text-xl font-serif font-light text-rc-charcoal">
                   {card.title}
                 </h3>
-                <p className="text-sm text-rc-textLight leading-relaxed mb-4">
-                  {card.description}
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-xs text-rc-forest font-medium group-hover:gap-2.5 transition-all duration-300">
+                
+                <div className="flex-1 relative mt-3">
+                  <p className="text-sm text-rc-textLight leading-relaxed absolute top-0 left-0 right-0 opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                    {card.description}
+                  </p>
+                </div>
+
+                <span className="inline-flex items-center gap-1.5 text-xs text-rc-forest font-medium mt-auto">
                   Tell me more
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </a>
             ))}
