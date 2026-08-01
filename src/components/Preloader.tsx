@@ -12,10 +12,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const logoGroupRef = useRef<HTMLDivElement>(null);
   const logoIconRef = useRef<HTMLDivElement>(null);
-  const brandTextRef = useRef<HTMLDivElement>(null);
-  const imageCircleRef = useRef<HTMLDivElement>(null);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
   const img1Ref = useRef<HTMLDivElement>(null);
   const img2Ref = useRef<HTMLDivElement>(null);
 
@@ -23,10 +21,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
     // Null safety guard
     if (
       !containerRef.current ||
-      !logoGroupRef.current ||
       !logoIconRef.current ||
-      !brandTextRef.current ||
-      !imageCircleRef.current ||
+      !imageWrapperRef.current ||
       !img1Ref.current ||
       !img2Ref.current
     ) {
@@ -34,10 +30,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
     }
 
     const container = containerRef.current;
-    const logoGroup = logoGroupRef.current;
     const logoIcon = logoIconRef.current;
-    const brandText = brandTextRef.current;
-    const imageCircle = imageCircleRef.current;
+    const imageWrapper = imageWrapperRef.current;
     const img1 = img1Ref.current;
     const img2 = img2Ref.current;
 
@@ -51,94 +45,80 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
       // Initial GSAP Setup
       gsap.set(container, { opacity: 0 });
-      gsap.set(logoGroup, { opacity: 0, y: 0, scale: 0.9 });
-      gsap.set(logoIcon, { opacity: 0, scale: 0.5 });
-      gsap.set(brandText, { opacity: 0, y: 15 });
-      gsap.set(imageCircle, { opacity: 0, scale: 0, y: 20 });
+      gsap.set(logoIcon, { opacity: 0, scale: 0.6, y: 0 });
+      gsap.set(imageWrapper, { opacity: 0, scale: 0.7, y: 20 });
       gsap.set([img1, img2], { opacity: 0 });
 
-      // Phase 1: Background arises & Logo Assembly (0.0s - 1.0s)
+      // Phase 1: Background arises & pure R Logo Appears (0.0s - 0.8s)
       tl.to(container, {
         opacity: 1,
         duration: 0.4,
         ease: "power2.out"
       })
-      .to(logoGroup, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.4,
-        ease: "power2.out"
-      }, "<")
       .to(logoIcon, {
         opacity: 1,
         scale: 1,
         duration: 0.6,
         ease: "back.out(1.6)"
       }, "-=0.2")
-      .to(brandText, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "power2.out"
-      }, "-=0.4")
 
-      // Phase 2: Shift Logo Upward & Reveal Circular Image Container (Yucca style split)
-      .to(logoGroup, {
-        y: -75,
-        duration: 0.7,
+      // Phase 2: Shift Logo Upward & Reveal Floating Transparent Image Wrapper
+      .to(logoIcon, {
+        y: -70,
+        duration: 0.65,
         ease: "power3.inOut"
       }, "+=0.15")
-      .to(imageCircle, {
+      .to(imageWrapper, {
         opacity: 1,
         scale: 1,
-        y: 35,
-        duration: 0.7,
+        y: 40,
+        duration: 0.65,
         ease: "power3.inOut"
       }, "<")
 
-      // Phase 3: Alternating Image Slideshow inside Circle (4 transitions)
+      // Phase 3: Alternating Transparent WebP Images (4 transitions)
       // Fade 1: Image 1
-      .to(img1, { opacity: 1, duration: 0.35, ease: "power2.out" })
-      .to(img1, { opacity: 0, duration: 0.35, ease: "power2.in" }, "+=0.2")
+      .to(img1, { opacity: 1, scale: 1.05, duration: 0.35, ease: "power2.out" })
+      .to(img1, { opacity: 0, scale: 0.9, duration: 0.35, ease: "power2.in" }, "+=0.2")
 
       // Fade 2: Image 2
-      .to(img2, { opacity: 1, duration: 0.35, ease: "power2.out" })
-      .to(img2, { opacity: 0, duration: 0.35, ease: "power2.in" }, "+=0.2")
+      .to(img2, { opacity: 1, scale: 1.05, duration: 0.35, ease: "power2.out" })
+      .to(img2, { opacity: 0, scale: 0.9, duration: 0.35, ease: "power2.in" }, "+=0.2")
 
       // Fade 3: Image 1
-      .to(img1, { opacity: 1, duration: 0.35, ease: "power2.out" })
-      .to(img1, { opacity: 0, duration: 0.35, ease: "power2.in" }, "+=0.2")
+      .to(img1, { opacity: 1, scale: 1.05, duration: 0.35, ease: "power2.out" })
+      .to(img1, { opacity: 0, scale: 0.9, duration: 0.35, ease: "power2.in" }, "+=0.2")
 
       // Fade 4: Image 2
-      .to(img2, { opacity: 1, duration: 0.35, ease: "power2.out" })
-      .to(img2, { opacity: 0, duration: 0.35, ease: "power2.in" }, "+=0.2")
+      .to(img2, { opacity: 1, scale: 1.05, duration: 0.35, ease: "power2.out" })
+      .to(img2, { opacity: 0, scale: 0.9, duration: 0.35, ease: "power2.in" }, "+=0.2")
 
-      // Phase 4: Image Circle Shrinks & Collapses (Yucca style collapse)
-      .to(imageCircle, {
-        scale: 0,
+      // Phase 4: Image Wrapper Fades Away & Collapses
+      .to(imageWrapper, {
+        scale: 0.5,
         opacity: 0,
         y: 0,
-        duration: 0.55,
+        duration: 0.5,
         ease: "power3.inOut"
       }, "+=0.1")
 
       // Phase 5: Logo Shifts Back to Center, Scales Up & Down, then Fades
-      .to(logoGroup, {
+      .to(logoIcon, {
         y: 0,
-        duration: 0.55,
+        duration: 0.5,
         ease: "power3.inOut"
       }, "<")
-      .to(logoGroup, {
-        scale: 1.25,
+      .to(logoIcon, {
+        scale: 1.3,
         duration: 0.4,
         ease: "power2.out"
       })
-      .to(logoGroup, {
+      .to(logoIcon, {
         scale: 0.9,
         duration: 0.3,
         ease: "power2.inOut"
       })
-      .to(logoGroup, {
+      .to(logoIcon, {
         opacity: 0,
         scale: 0.8,
         duration: 0.35,
@@ -165,51 +145,38 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       className="fixed inset-0 z-[9999] bg-rc-forest flex items-center justify-center pointer-events-none select-none overflow-hidden"
     >
       <div className="relative flex flex-col items-center justify-center min-h-screen w-full px-4">
-        {/* Yucca-Style Assembled Logo & Brand Mark */}
+        {/* Pure Floating SVG R-Logo (No Background Box / No Words) */}
         <div
-          ref={logoGroupRef}
-          className="flex flex-col items-center justify-center text-center z-20"
+          ref={logoIconRef}
+          className="flex items-center justify-center z-20"
         >
-          <div
-            ref={logoIconRef}
-            className="w-20 h-20 sm:w-24 sm:h-24 mb-3 rounded-2xl bg-rc-cream/10 border border-rc-cream/20 flex items-center justify-center shadow-2xl backdrop-blur-md"
-          >
-            <Logo className="w-12 h-12 sm:w-14 sm:h-14 text-rc-cream" fillColor="currentColor" />
-          </div>
-
-          <div
-            ref={brandTextRef}
-            className="font-serif tracking-tight text-rc-cream leading-none mt-1"
-          >
-            <span className="text-2xl sm:text-3xl font-light">Richard</span>
-            <span className="text-2xl sm:text-3xl italic font-light ml-2 text-rc-goldLight">Catering</span>
-          </div>
+          <Logo className="w-24 h-24 sm:w-28 sm:h-28 text-rc-cream drop-shadow-2xl" fillColor="currentColor" />
         </div>
 
-        {/* Yucca-Style Circular Image Container Below Logo */}
+        {/* Floating Transparent WebP Images Container (No Background Box/Circle) */}
         <div
-          ref={imageCircleRef}
-          className="absolute w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-rc-goldLight/40 shadow-2xl bg-rc-charcoal z-10"
+          ref={imageWrapperRef}
+          className="absolute w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center z-10"
         >
           <div
             ref={img1Ref}
-            className="absolute inset-0 w-full h-full"
+            className="absolute inset-0 w-full h-full flex items-center justify-center"
           >
             <img
-              src="/startup-images/content.png"
+              src="/startup-images/content.webp"
               alt="Catering Preview 1"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain filter drop-shadow-2xl"
             />
           </div>
 
           <div
             ref={img2Ref}
-            className="absolute inset-0 w-full h-full"
+            className="absolute inset-0 w-full h-full flex items-center justify-center"
           >
             <img
-              src="/startup-images/content 2.png"
+              src="/startup-images/content-2.webp"
               alt="Catering Preview 2"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain filter drop-shadow-2xl"
             />
           </div>
         </div>

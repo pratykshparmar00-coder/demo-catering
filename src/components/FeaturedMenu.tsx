@@ -62,7 +62,7 @@ export const FeaturedMenu: React.FC = () => {
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif tracking-tight text-rc-charcoal font-light leading-[1.1]">
             A Glimpse of Our{' '}
-            <span className="italic text-rc-forest">Offerings</span>
+            <span className="italic text-rc-forest font-normal">Offerings</span>
           </h2>
           <p className="text-rc-textLight text-[15px] leading-relaxed max-w-lg mx-auto">
             Our menu spans 100+ curated dishes, each prepared with premium ingredients
@@ -70,7 +70,7 @@ export const FeaturedMenu: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Menu Grid */}
+        {/* Menu Grid with Yucca Hover Scale Maximization */}
         <motion.div
           variants={staggerCards}
           initial="hidden"
@@ -82,14 +82,16 @@ export const FeaturedMenu: React.FC = () => {
             <motion.div
               key={cat.category}
               variants={fadeUp}
-              className="bg-white rounded-2xl border border-rc-border p-7 space-y-5"
+              whileHover={{ y: -6, scale: 1.015 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white rounded-2xl border border-rc-border hover:border-rc-forest/25 p-7 sm:p-8 space-y-5 transition-all duration-500 shadow-[0_4px_25px_-10px_rgba(27,58,45,0.04)] hover:shadow-[0_16px_45px_-12px_rgba(27,58,45,0.12)] cursor-pointer"
             >
               {/* Category header */}
               <div className="flex items-center justify-between pb-4 border-b border-rc-borderLight">
                 <h3 className="font-serif text-xl font-light text-rc-charcoal tracking-tight">
                   {cat.category}
                 </h3>
-                <span className="text-[10px] tracking-[0.15em] uppercase text-rc-textMuted">
+                <span className="text-[10px] tracking-[0.15em] uppercase text-rc-textMuted font-medium">
                   {cat.items.length} items
                 </span>
               </div>
@@ -99,27 +101,19 @@ export const FeaturedMenu: React.FC = () => {
                 {cat.items.map((item, i) => (
                   <div
                     key={i}
-                    className="flex items-center justify-between py-3.5 border-b border-rc-borderLight last:border-0 group"
+                    className="flex items-center justify-between py-3 border-b border-rc-borderLight/60 last:border-0 group/item hover:bg-rc-warmWhite/50 px-2 rounded-lg transition-colors"
                   >
                     <div className="flex items-center gap-3">
                       <span
-                        className={`w-2.5 h-2.5 rounded-sm border ${
-                          item.type === 'veg'
-                            ? 'border-rc-success'
-                            : 'border-red-400'
-                        } flex items-center justify-center`}
-                      >
-                        <span
-                          className={`w-1.5 h-1.5 rounded-full ${
-                            item.type === 'veg' ? 'bg-rc-success' : 'bg-red-400'
-                          }`}
-                        />
-                      </span>
-                      <span className="text-sm text-rc-text group-hover:text-rc-forest transition-colors duration-300">
+                        className={`w-2 h-2 rounded-full shrink-0 ${
+                          item.type === 'veg' ? 'bg-rc-success' : 'bg-red-400'
+                        }`}
+                      />
+                      <span className="text-sm text-rc-text font-light group-hover/item:text-rc-forest transition-colors">
                         {item.name}
                       </span>
                     </div>
-                    <span className="text-xs text-rc-textMuted font-medium ml-4 shrink-0">
+                    <span className="text-xs text-rc-textMuted font-mono">
                       {item.price}
                     </span>
                   </div>
@@ -127,25 +121,6 @@ export const FeaturedMenu: React.FC = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Footer note */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="text-center mt-12 space-y-4"
-        >
-          <p className="text-sm text-rc-textMuted">
-            Full menu available upon request. All prices are per guest and may vary by event size.
-          </p>
-          <a
-            href="#consultation"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-rc-border text-rc-text text-[13px] tracking-wide hover:border-rc-forest hover:text-rc-forest transition-all duration-500"
-          >
-            Request Full Menu
-          </a>
         </motion.div>
       </div>
     </section>

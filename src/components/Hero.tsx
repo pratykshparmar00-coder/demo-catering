@@ -1,16 +1,66 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Star } from 'lucide-react';
 import { heroStagger, fadeUp, fadeIn } from '../../libraries/animations/presets';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export const Hero: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Framer Motion scroll parallax & scale values
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const bgParallax = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const cardScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.04, 0.96]);
+
+  useEffect(() => {
+    if (!sectionRef.current || !cardRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // GSAP ScrollTrigger Maximise/Minimize scale animation on scroll
+      gsap.fromTo(
+        cardRef.current,
+        { scale: 0.96, opacity: 0.9 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            end: "top 20%",
+            scrub: 1
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-rc-cream pt-24 lg:pt-0">
-      {/* Subtle decorative elements */}
-      <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-rc-forest/[0.03] rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-rc-gold/[0.04] rounded-full blur-[80px] pointer-events-none" />
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center overflow-hidden bg-rc-cream pt-24 lg:pt-0"
+    >
+      {/* Subtle warm parallax decorative elements */}
+      <motion.div
+        style={{ y: bgParallax }}
+        className="absolute top-20 right-0 w-[550px] h-[550px] bg-rc-forest/[0.04] rounded-full blur-[110px] pointer-events-none"
+      />
+      <motion.div
+        style={{ y: heroY }}
+        className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-rc-gold/[0.05] rounded-full blur-[90px] pointer-events-none"
+      />
 
       {/* Decorative border line */}
       <motion.div
@@ -24,6 +74,7 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center py-16 lg:py-0">
           {/* Left: Editorial headline */}
           <motion.div
+            style={{ y: heroY }}
             variants={heroStagger}
             initial="hidden"
             animate="visible"
@@ -31,7 +82,7 @@ export const Hero: React.FC = () => {
           >
             {/* Tag */}
             <motion.div variants={fadeUp}>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-rc-border text-[11px] tracking-[0.15em] uppercase text-rc-textMuted">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-rc-border text-[11px] tracking-[0.15em] uppercase text-rc-textMuted bg-white/50 backdrop-blur-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-rc-forest" />
                 Premier Catering Services
               </span>
@@ -43,7 +94,7 @@ export const Hero: React.FC = () => {
               className="text-[clamp(2.5rem,5.5vw,5rem)] font-serif tracking-tight text-rc-charcoal leading-[1.08] font-light"
             >
               Crafting Exceptional{' '}
-              <span className="italic text-rc-forest">Culinary</span>
+              <span className="italic text-rc-forest font-normal">Culinary</span>
               <br />
               Experiences.
             </motion.h1>
@@ -62,14 +113,14 @@ export const Hero: React.FC = () => {
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-2">
               <a
                 href="#consultation"
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-rc-forest text-rc-cream text-[13px] tracking-wide hover:bg-rc-forestLight transition-all duration-500 group"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-rc-forest text-rc-cream text-[13px] tracking-wide hover:bg-rc-forestLight hover:scale-[1.02] active:scale-[0.98] transition-all duration-500 shadow-lg shadow-rc-forest/10 group"
               >
                 <span>Plan Your Event</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
                 href="#services"
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full border border-rc-border text-rc-text text-[13px] tracking-wide hover:border-rc-forest hover:text-rc-forest transition-all duration-500"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full border border-rc-border bg-white/60 backdrop-blur-sm text-rc-text text-[13px] tracking-wide hover:border-rc-forest hover:text-rc-forest hover:scale-[1.02] active:scale-[0.98] transition-all duration-500"
               >
                 Explore Services
               </a>
@@ -100,19 +151,20 @@ export const Hero: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right: Premium card */}
+          {/* Right: Premium Card with Parallax & Maximise/Minimize scale */}
           <motion.div
+            style={{ scale: cardScale }}
             variants={fadeIn}
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.6 }}
             className="lg:col-span-5"
           >
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+            <div ref={cardRef} className="relative mx-auto max-w-md lg:max-w-none group">
               {/* Decorative frame */}
-              <div className="absolute -top-3 -right-3 w-full h-full rounded-2xl border border-rc-forest/10" />
+              <div className="absolute -top-3 -right-3 w-full h-full rounded-2xl border border-rc-forest/15 transition-all duration-700 group-hover:-top-4 group-hover:-right-4" />
 
-              <div className="relative bg-white rounded-2xl p-7 sm:p-8 border border-rc-border space-y-6 shadow-[0_8px_40px_-12px_rgba(27,58,45,0.06)]">
+              <div className="relative bg-white rounded-2xl p-7 sm:p-8 border border-rc-border space-y-6 shadow-[0_12px_50px_-15px_rgba(27,58,45,0.08)] transition-all duration-700 group-hover:shadow-[0_20px_60px_-15px_rgba(27,58,45,0.12)]">
                 {/* Card header */}
                 <div className="flex items-center justify-between border-b border-rc-borderLight pb-5">
                   <div className="flex items-center gap-3">
@@ -145,7 +197,7 @@ export const Hero: React.FC = () => {
                     ].map((item, i) => (
                       <div
                         key={i}
-                        className="p-3 rounded-xl bg-rc-warmWhite border border-rc-borderLight flex items-center gap-2 text-xs"
+                        className="p-3 rounded-xl bg-rc-warmWhite border border-rc-borderLight flex items-center gap-2 text-xs hover:border-rc-gold/30 hover:bg-white transition-all duration-300"
                       >
                         <span className={`w-2 h-2 rounded-full shrink-0 ${item.type === 'veg' ? 'bg-rc-success' : 'bg-red-400'}`} />
                         <span className="text-rc-text truncate">{item.name}</span>
@@ -170,7 +222,7 @@ export const Hero: React.FC = () => {
                     </div>
                     <a
                       href="#consultation"
-                      className="px-5 py-2.5 rounded-full bg-rc-forest text-rc-cream text-xs tracking-wide hover:bg-rc-forestLight transition-all duration-500"
+                      className="px-5 py-2.5 rounded-full bg-rc-forest text-rc-cream text-xs tracking-wide hover:bg-rc-forestLight transition-all duration-500 shadow-md"
                     >
                       Enquire
                     </a>
