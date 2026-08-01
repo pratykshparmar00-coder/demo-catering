@@ -7,9 +7,9 @@ import { fadeUp } from '../../libraries/animations/presets';
 import { Logo } from './Logo';
 
 const SERVICE_CARDS = [
-  { title: 'Corporate Events', href: '#services' },
-  { title: 'Weddings', href: '#services' },
-  { title: 'Private Dining', href: '#services' },
+  { title: 'Corporate Events', href: '#services', image: '/footer/corporate.png' },
+  { title: 'Weddings', href: '#services', image: '/footer/wedding.png' },
+  { title: 'Private Dining', href: '#services', image: '/footer/private_dining.png' },
 ];
 
 export const Footer: React.FC = () => {
@@ -65,9 +65,25 @@ export const Footer: React.FC = () => {
               <a
                 key={card.title}
                 href={card.href}
-                className="flex items-center justify-center py-16 lg:py-20 rounded-2xl border border-rc-forest/20 text-lg font-serif font-light text-rc-charcoal hover:bg-rc-forest hover:text-rc-cream hover:border-rc-forest transition-all duration-500"
+                className="group relative flex items-center justify-center py-16 lg:py-20 rounded-2xl border border-rc-forest/20 text-lg font-serif font-light text-rc-charcoal hover:border-rc-forest transition-all duration-500 overflow-hidden"
               >
-                {card.title}
+                {/* Background color transition */}
+                <div className="absolute inset-0 bg-transparent group-hover:bg-rc-forest transition-colors duration-500 z-0" />
+
+                {/* Circular Wipe Image Reveal on Hover */}
+                <div 
+                  className="absolute inset-0 pointer-events-none z-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [clip-path:circle(0%_at_50%_50%)] group-hover:[clip-path:circle(150%_at_50%_50%)]"
+                >
+                  <img 
+                    src={card.image} 
+                    alt={card.title} 
+                    className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
+                  />
+                </div>
+
+                <span className="relative z-20 group-hover:text-rc-cream transition-colors duration-500">
+                  {card.title}
+                </span>
               </a>
             ))}
           </div>
