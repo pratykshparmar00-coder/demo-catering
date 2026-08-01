@@ -5,14 +5,14 @@ import { motion } from 'framer-motion';
 import { staggerCards, fadeUp } from '../../libraries/animations/presets';
 
 const MENU_ITEMS = [
-  { name: 'Paneer Tikka Angara', type: 'veg', price: '₹65/pax', category: 'Starter' },
-  { name: 'Murgh Malai Tikka', type: 'non-veg', price: '₹85/pax', category: 'Starter' },
-  { name: 'Dal Makhani Special', type: 'veg', price: '₹50/pax', category: 'Main Course' },
-  { name: 'Butter Chicken Classic', type: 'non-veg', price: '₹80/pax', category: 'Main Course' },
-  { name: 'Hyderabadi Veg Biryani', type: 'veg', price: '₹55/pax', category: 'Biryani' },
-  { name: 'Lucknowi Gosht Biryani', type: 'non-veg', price: '₹85/pax', category: 'Biryani' },
-  { name: 'Kesari Rasmalai', type: 'veg', price: '₹45/pax', category: 'Dessert' },
-  { name: 'Belgian Chocolate Mousse', type: 'veg', price: '₹55/pax', category: 'Dessert' },
+  { name: 'Paneer Tikka Angara', type: 'veg', price: '₹65/pax', category: 'Starter', image: '/menu/paneer-tikka.png' },
+  { name: 'Murgh Malai Tikka', type: 'non-veg', price: '₹85/pax', category: 'Starter', image: '/menu/murgh-malai.png' },
+  { name: 'Dal Makhani Special', type: 'veg', price: '₹50/pax', category: 'Main Course', image: '/menu/dal-makhani.png' },
+  { name: 'Butter Chicken Classic', type: 'non-veg', price: '₹80/pax', category: 'Main Course', image: '/menu/butter-chicken.png' },
+  { name: 'Hyderabadi Veg Biryani', type: 'veg', price: '₹55/pax', category: 'Biryani', image: '/menu/veg-biryani.png' },
+  { name: 'Lucknowi Gosht Biryani', type: 'non-veg', price: '₹85/pax', category: 'Biryani', image: '/menu/gosht-biryani.png' },
+  { name: 'Kesari Rasmalai', type: 'veg', price: '₹45/pax', category: 'Dessert', image: '/menu/rasmalai.png' },
+  { name: 'Belgian Chocolate Mousse', type: 'veg', price: '₹55/pax', category: 'Dessert', image: '/menu/mousse.png' },
 ];
 
 export const FeaturedMenu: React.FC = () => {
@@ -62,16 +62,15 @@ export const FeaturedMenu: React.FC = () => {
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="group bg-white rounded-2xl border border-rc-border overflow-hidden hover:border-rc-forest/20 hover:shadow-[0_12px_40px_-12px_rgba(27,58,45,0.10)] transition-all duration-500 cursor-pointer"
             >
-              {/* Image placeholder — warm gradient */}
-              <div className="aspect-square bg-gradient-to-br from-rc-beige via-rc-warmWhite to-rc-sand flex items-center justify-center relative overflow-hidden">
-                <div className="text-6xl opacity-30 group-hover:scale-110 transition-transform duration-700">
-                  {item.category === 'Starter' && '🍢'}
-                  {item.category === 'Main Course' && '🍛'}
-                  {item.category === 'Biryani' && '🍚'}
-                  {item.category === 'Dessert' && '🍮'}
-                </div>
+              {/* Image */}
+              <div className="aspect-square bg-gradient-to-br from-rc-beige via-rc-warmWhite to-rc-sand relative overflow-hidden img-scale">
+                <img 
+                  src={item.image} 
+                  alt={item.name} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
                 {/* Category tag */}
-                <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/80 backdrop-blur-sm text-[10px] tracking-wider uppercase text-rc-textMuted font-medium">
+                <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md text-[10px] tracking-wider uppercase text-rc-charcoal font-medium z-10 shadow-sm">
                   {item.category}
                 </span>
               </div>
