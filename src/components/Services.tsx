@@ -71,7 +71,7 @@ export const Services: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif tracking-tight text-rc-charcoal font-light leading-[1.1]">
             Tailored Catering for
             <br />
-            <span className="italic text-rc-forest">Every Occasion</span>
+            <span className="italic text-rc-forest font-normal">Every Occasion</span>
           </h2>
           <p className="text-rc-textLight text-[15px] leading-relaxed max-w-lg">
             From corporate boardrooms to grand wedding celebrations, we deliver
@@ -79,7 +79,7 @@ export const Services: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Service Cards Grid */}
+        {/* Service Cards Grid with Yucca-Style Card Maximize & Scale */}
         <motion.div
           variants={staggerCards}
           initial="hidden"
@@ -93,39 +93,39 @@ export const Services: React.FC = () => {
               <motion.div
                 key={service.title}
                 variants={fadeUp}
-                className="card-premium group relative bg-white rounded-2xl p-7 border border-rc-border hover:border-rc-forest/20 transition-colors duration-500 flex flex-col"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="card-premium group relative bg-white rounded-2xl p-7 sm:p-8 border border-rc-border hover:border-rc-forest/25 transition-all duration-500 flex flex-col justify-between shadow-[0_4px_25px_-10px_rgba(27,58,45,0.04)] hover:shadow-[0_16px_45px_-12px_rgba(27,58,45,0.12)] cursor-pointer"
               >
-                {/* Icon */}
-                <div className="w-12 h-12 rounded-xl bg-rc-forest/[0.06] flex items-center justify-center mb-6 group-hover:bg-rc-forest/[0.1] transition-colors duration-500">
-                  <Icon className="w-5 h-5 text-rc-forest" />
+                <div>
+                  {/* Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-rc-forest/[0.06] flex items-center justify-center mb-6 group-hover:bg-rc-forest group-hover:text-rc-cream transition-all duration-500">
+                    <Icon className="w-5 h-5 text-rc-forest group-hover:text-rc-cream transition-colors duration-500" />
+                  </div>
+
+                  <h3 className="font-serif text-xl text-rc-charcoal font-light mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-rc-textLight leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+
+                  <div className="space-y-2 mb-6">
+                    {service.features.map((feature) => (
+                      <div key={feature} className="flex items-center gap-2 text-xs text-rc-textMuted">
+                        <span className="w-1 h-1 rounded-full bg-rc-forest/40" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Content */}
-                <h3 className="text-xl font-serif font-light text-rc-charcoal mb-2 tracking-tight">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-rc-textLight leading-relaxed mb-5 flex-grow">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <div className="space-y-2 mb-6">
-                  {service.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-rc-textMuted">
-                      <span className="w-1 h-1 rounded-full bg-rc-forest" />
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-
-                {/* Footer */}
-                <div className="pt-5 border-t border-rc-borderLight flex items-center justify-between">
-                  <span className="text-[12px] text-rc-textMuted">
-                    Starting at{' '}
-                    <span className="text-rc-forest font-medium">{service.startingAt}</span>
+                <div className="pt-6 border-t border-rc-borderLight flex items-center justify-between">
+                  <span className="text-xs text-rc-textMuted">
+                    <span className="font-medium text-rc-forest">{service.startingAt}</span>
                   </span>
                   <div className="w-8 h-8 rounded-full border border-rc-border flex items-center justify-center group-hover:bg-rc-forest group-hover:border-rc-forest transition-all duration-500">
-                    <ArrowUpRight className="w-3.5 h-3.5 text-rc-textMuted group-hover:text-rc-cream transition-colors duration-500" />
+                    <ArrowUpRight className="w-4 h-4 text-rc-textMuted group-hover:text-rc-cream transition-colors duration-500" />
                   </div>
                 </div>
               </motion.div>
