@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   description:
     "Richard Catering delivers exceptional culinary experiences for corporate events, weddings, private gatherings, and daily office meals. Trusted by leading brands across India.",
   keywords: "catering, corporate catering, wedding catering, private events, live counters, custom menus, premium catering India",
+  icons: {
+    icon: "/logo.svg",
+  },
   openGraph: {
     title: "Richard Catering | Premium Catering Services",
     description: "Exceptional culinary experiences for every occasion. Corporate, weddings, private events, and more.",
