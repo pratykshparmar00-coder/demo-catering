@@ -101,21 +101,32 @@ const FlipCard = ({ service }: { service: typeof SERVICES[0] }) => {
 
 export const Services: React.FC = () => {
   return (
-    <section id="services" className="py-24 lg:py-32 bg-rc-cream relative">
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-rc-border" />
+    <section id="services" className="py-24 lg:py-32 relative overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img 
+          src="/hero-food.png" 
+          alt="Premium catering dishes" 
+          className="w-full h-full object-cover opacity-90" 
+        />
+        {/* Much lighter overlay so the image is highly visible */}
+        <div className="absolute inset-0 bg-[#FAFAFA]/30 backdrop-blur-[1px]" />
+      </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Section Label */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-rc-border z-10" />
+
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        {/* Section Heading */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="mb-16"
+          className="mb-12 lg:mb-16"
         >
-          <span className="text-[11px] tracking-[0.2em] uppercase text-rc-forest font-medium">
+          <h2 className="text-[clamp(2.5rem,4vw,3.5rem)] font-serif font-light text-rc-charcoal drop-shadow-sm">
             Our Services
-          </span>
+          </h2>
         </motion.div>
 
         {/* 3-Column Flip Cards */}
