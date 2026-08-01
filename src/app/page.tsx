@@ -4,14 +4,16 @@ import React, { useState } from 'react';
 import { Preloader } from '../components/Preloader';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
+import { CoreValues } from '../components/CoreValues';
+import { ExcellenceCallout } from '../components/ExcellenceCallout';
 import { Services } from '../components/Services';
 import { WhyChooseUs } from '../components/WhyChooseUs';
 import { FeaturedMenu } from '../components/FeaturedMenu';
 import { Consultation } from '../components/Consultation';
+import { FinalCTA } from '../components/FinalCTA';
 import { Standards } from '../components/Standards';
 import { Testimonials } from '../components/Testimonials';
 import { FAQ } from '../components/FAQ';
-import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 
 export default function Home() {
@@ -25,18 +27,19 @@ export default function Home() {
       {/* Navigation */}
       <Header />
 
-      {/* Main Content */}
+      {/* Main Content — Yucca Section Flow */}
       <main className="flex-grow">
-        {/* Hero → Services → Why Us → Menu → Consultation → Standards → Testimonials → FAQ → CTA */}
         <Hero />
+        <CoreValues />
+        <ExcellenceCallout />
         <Services />
         <WhyChooseUs />
         <FeaturedMenu />
         <Consultation />
+        <FinalCTA />
         <Standards />
         <Testimonials />
         <FAQ />
-        <FinalCTA />
       </main>
 
       {/* Footer */}
