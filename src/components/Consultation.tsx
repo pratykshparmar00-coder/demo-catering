@@ -7,7 +7,7 @@ import { fadeUp, staggerCards } from '../../libraries/animations/presets';
 
 export const Consultation: React.FC = () => {
   return (
-    <section id="consultation" className="py-24 lg:py-32 bg-rc-cream relative">
+    <section id="consultation" className="py-24 lg:py-32 bg-rc-beige relative">
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-rc-border" />
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
@@ -166,7 +166,7 @@ export const Consultation: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-rc-forest text-rc-cream text-[13px] tracking-wide hover:bg-rc-forestLight transition-all duration-500 group"
+                   className="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-rc-charcoal text-white text-[13px] tracking-wide hover:bg-rc-forest transition-all duration-500 group"
                 >
                   <span>Submit Enquiry</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
