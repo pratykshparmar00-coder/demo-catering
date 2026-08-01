@@ -2,54 +2,58 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Phone } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { fadeUp } from '../../libraries/animations/presets';
 
 export const FinalCTA: React.FC = () => {
   return (
-    <section className="py-24 lg:py-32 bg-rc-forest relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-white/[0.015] -translate-y-1/3 translate-x-1/4" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-white/[0.02] translate-y-1/3 -translate-x-1/4" />
+    <>
+      {/* Dark CTA Block */}
+      <section className="relative bg-rc-forest text-rc-cream overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 py-24 lg:py-32">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"
+          >
+            <div className="lg:col-span-8 space-y-3">
+              <span className="text-[11px] tracking-[0.2em] uppercase text-rc-goldLight/80 font-medium">
+                Custom Solutions
+              </span>
+              <h2 className="text-[clamp(1.8rem,4vw,3.5rem)] font-serif font-light text-rc-cream leading-[1.15]">
+                Events that thrive invest in
+                <br />
+                exceptional catering. Let us
+                <br />
+                bring your vision to life.
+              </h2>
+            </div>
+            <div className="lg:col-span-4 flex justify-end">
+              {/* Decorative food element */}
+              <div className="w-48 h-48 lg:w-64 lg:h-64 rounded-3xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center">
+                <span className="text-7xl lg:text-8xl opacity-20">🍽️</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center max-w-3xl mx-auto space-y-8"
-        >
-          <span className="text-[11px] tracking-[0.2em] uppercase text-rc-goldLight font-medium">
-            Ready to Begin?
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif tracking-tight text-rc-cream font-light leading-[1.1]">
-            Let's Create Something{' '}
-            <span className="italic text-rc-goldLight">Extraordinary</span>
-          </h2>
-          <p className="text-rc-sand/70 text-[15px] leading-relaxed max-w-xl mx-auto">
-            Whether it's a board meeting for 20 or a wedding for 500,
-            we bring the same dedication to every table we set.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <a
-              href="#consultation"
-              className="inline-flex items-center gap-2.5 px-10 py-4 rounded-full bg-rc-cream text-rc-forest text-[13px] tracking-wide font-medium hover:bg-white transition-all duration-500 group"
+      {/* Scrolling Marquee Ticker */}
+      <section className="bg-rc-forest border-t border-white/[0.08] overflow-hidden py-6 lg:py-8">
+        <div className="flex whitespace-nowrap animate-marquee">
+          {[...Array(4)].map((_, i) => (
+            <span
+              key={i}
+              className="flex items-center gap-6 text-[clamp(1.2rem,3vw,2rem)] font-serif text-rc-cream/90 font-light mr-12"
             >
-              <span>Book a Consultation</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-            <a
-              href="tel:+919876543210"
-              className="inline-flex items-center gap-2.5 px-10 py-4 rounded-full border border-white/15 text-rc-cream text-[13px] tracking-wide hover:border-white/30 transition-all duration-500"
-            >
-              <Phone className="w-4 h-4" />
-              <span>Call Us Now</span>
-            </a>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+              <ArrowUpRight className="w-6 h-6 text-rc-goldLight shrink-0" />
+              <span>Have a special request? Get in touch to find out.</span>
+            </span>
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
