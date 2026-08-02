@@ -1,35 +1,26 @@
 # 🥂 Naman Catering | Premium Catering Platform
 
-An end-to-end, commercial-grade online catering booking platform designed for luxury events, corporate gatherings, weddings, and private parties. Built with a focus on **premium design aesthetics**, smooth animations, and a seamless booking experience.
+An end-to-end, commercial-grade online catering booking platform designed for luxury events, corporate gatherings, weddings, and private parties. Built with a focus on **premium design aesthetics**, smooth animations, and a seamless user experience.
 
 ---
 
-## 🏬 Business Core Offerings & Product Lines
+## 📖 Landing Page Architecture & Flow
 
-| Product Line | Format & Packaging | Ideal Event Type | Key Features |
-|---|---|---|---|
-| **Premium Box** | Hot Bulk Delivery in 3-Layer Insulated Eco Containers | House Parties, Birthdays (10–50 Pax) | Delivered piping hot; includes complimentary bio-degradable disposables; zero setup hassle. |
-| **Luxury Buffet** | Luxury Chafing Dish Setup + Uniformed Staff | Weddings, Receptions, Corporate (25–500+ Pax) | Premium stainless steel warming dishes, dressed server staff, crockery, setup & post-event cleanup. |
-| **Executive MealBox**| Individual 5-Compartment Hygienic Thali Trays | Office Lunches, Seminars, Conferences (15+ Pax) | Individual sealed portions (Starter + 2 Mains + Dal + Rice + Roti + Dessert); zero cross-contamination. |
-| **Live Stations** | Interactive Live Cooking Stations | Anniversaries, Premium Gatherings (30+ Pax) | On-site live Woodfire Pizza, Pasta Bar, Live Chaat & BBQ stations manned by expert chefs. |
+The main landing page is designed to guide users through a premium journey, featuring the following sequential sections:
 
----
-
-## ⚡ Interactive Menu Configurator & Pricing Engine
-
-1. **Dynamic Guest Count & Ratio Controls**:
-   - Live guest slider (10 to 500+ guests).
-   - Veg vs Non-Veg guest percentage ratio picker (e.g. 70% Veg / 30% Non-Veg).
-2. **Categorized Gourmet Catalog**:
-   - Starters (Paneer Tikka Angara, Murgh Malai Tikka, Amritsari Fish Fry, Cheese Corn Balls).
-   - Main Course Gravies (Paneer Butter Masala, Dal Makhani, Boneless Butter Chicken, Hyderabadi Mutton Korma).
-   - Rice & Breads (Dum Veg Biryani, Chicken Dum Biryani, Assorted Tandoori Naan & Roti).
-   - Desserts & Add-ons (Kesari Rasmalai, Hot Gulab Jamun, Moong Dal Halwa, Live Counters).
-3. **Transparent Price Calculation**:
-   - Real-time per-head rate calculation.
-   - Volume discount tiers.
-   - Optional uniformed server fee & cutlery add-on toggles.
-   - Tax and delivery calculations.
+1. **Preloader**: A luxurious loading animation to establish the brand tone before revealing the site.
+2. **Hero**: Full-width editorial layout with a massive serif headline and parallax imagery.
+3. **Core Values**: Horizontally scrolling marquee highlighting key brand pillars (Quality, Freshness, Presentation, etc.).
+4. **Excellence Callout**: A visually striking banner emphasizing our culinary standards.
+5. **Services**: Elegant display of our core offerings (Weddings, Corporate, Private Dining).
+6. **Why Choose Us**: Detailed breakdown of our commitment to excellence and professional staff.
+7. **Featured Menu**: A visual grid showcasing our signature dishes and culinary range.
+8. **Consultation**: A sleek, minimal contact and booking section to capture high-value leads.
+9. **Final CTA**: A strong, mid-page call-to-action encouraging users to book their event.
+10. **Standards**: Highlighting our hygiene, sourcing, and sustainability commitments.
+11. **Testimonials**: Authentic reviews from past clients in an elegant carousel.
+12. **FAQ**: Expandable accordion sections for common customer questions.
+13. **Footer**: Clean, sophisticated multi-column footer with links and contact info.
 
 ---
 
