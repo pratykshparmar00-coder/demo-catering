@@ -26,7 +26,11 @@ const HERO_CARDS = [
   },
 ];
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  loading?: boolean;
+}
+
+export const Hero: React.FC<HeroProps> = ({ loading = false }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
@@ -41,16 +45,11 @@ export const Hero: React.FC = () => {
   const lenis = useLenis();
 
   useGSAP(() => {
-    // 1. Lock scrolling immediately using standard CSS
+    // 1. Initial State Setup (always run immediately so elements are hidden)
     document.body.style.overflow = 'hidden';
-    
-    // Safety fallback: if lenis is available, stop it too
     if (lenis) lenis.stop();
 
-    // Ensure elements are initially hidden/positioned before animation
     gsap.set([plate1Ref.current, plate2Ref.current, plate3Ref.current, plate4Ref.current, plate5Ref.current], { opacity: 0, scale: 0.2 });
-    
-    // Set initial off-screen positions for plates
     gsap.set(plate1Ref.current, { x: -200, y: -200, rotation: -45 });
     gsap.set(plate2Ref.current, { x: 200, y: -100, rotation: 45 });
     gsap.set(plate3Ref.current, { x: -200, y: 150, rotation: -20 });
@@ -58,14 +57,28 @@ export const Hero: React.FC = () => {
     gsap.set(plate5Ref.current, { x: 0, y: 250, rotation: 10 });
 
     const headlineLines = headlineRef.current?.querySelectorAll('.line-inner');
-    gsap.set(headlineLines!, { yPercent: 100 });
+    if (headlineLines) {
+      gsap.set(headlineLines, { yPercent: 100 });
+    }
     
-    // 2. Build GSAP Timeline
+    // Wait for the Preloader to finish before animating
+    if (loading) return;
+    
+    // 2. Build Entrance GSAP Timeline
     const tl = gsap.timeline({
       onComplete: () => {
-        // Unlock scrolling after animation completes
+        // Unlock scrolling after entrance animation completes
         document.body.style.overflow = 'auto';
         if (lenis) lenis.start();
+
+        // 3. Start the infinite breathing effect independently so it doesn't block onComplete
+        gsap.to(imageContainerRef.current, {
+          scale: 1.03,
+          duration: 2.5,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1
+        });
       }
     });
 
@@ -90,16 +103,7 @@ export const Hero: React.FC = () => {
       ease: 'expo.out'
     }, "-=0.6");
 
-    // Phase 3: Final Reveal Scale Up (Subtle breathing effect)
-    tl.to(imageContainerRef.current, {
-      scale: 1.03,
-      duration: 2.5,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1
-    }, "-=0.5");
-
-  }, { scope: sectionRef, dependencies: [lenis] }); // Scope animations to the section
+  }, { scope: sectionRef, dependencies: [lenis, loading] }); // Re-run when loading changes to false
 
   return (
     <section

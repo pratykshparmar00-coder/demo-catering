@@ -29,7 +29,7 @@ export default function Home() {
 
       {/* Main Content — Yucca Section Flow */}
       <main className="flex-grow">
-        <Hero />
+        <Hero loading={loading} />
         <CoreValues />
         <ExcellenceCallout />
         <Services />
