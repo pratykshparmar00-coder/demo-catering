@@ -50,7 +50,7 @@ export const Header: React.FC = () => {
             <a href="#" className="flex items-center gap-2.5 group z-[110]">
               <Logo className={`w-8 h-8 transition-colors duration-500 group-hover:scale-105 ${scrolled ? 'text-white' : 'text-rc-forest'}`} fillColor="currentColor" />
               <span className="text-lg font-serif tracking-tight leading-none text-current">
-                Richard
+                Naman
                 <br />
                 <span className="text-[13px] tracking-normal">Catering</span>
               </span>

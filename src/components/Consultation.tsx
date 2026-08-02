@@ -179,7 +179,7 @@ export const Consultation: React.FC = () => {
                   <Phone className="w-3.5 h-3.5" />
                   Call Directly
                 </a>
-                <a href="mailto:events@richardcatering.com" className="flex items-center gap-2 hover:text-rc-forest transition-colors">
+                <a href="mailto:events@namancatering.com" className="flex items-center gap-2 hover:text-rc-forest transition-colors">
                   <MessageSquare className="w-3.5 h-3.5" />
                   Email Us
                 </a>

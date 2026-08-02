@@ -17,7 +17,7 @@ export default {
     },
     extend: {
       colors: {
-        // Richard Catering Premium Palette
+        // Naman Catering Premium Palette
         rc: {
           cream: '#FAF8F5',
           warmWhite: '#F5F2ED',

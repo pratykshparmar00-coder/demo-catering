@@ -1,6 +1,6 @@
-# Redesign Richard Catering Homepage to Match Yucca.co.za
+# Redesign Naman Catering Homepage to Match Yucca.co.za
 
-Redesign the entire Richard Catering homepage UI/UX to match the Yucca.co.za design language — warm cream backgrounds, editorial serif typography, full-width hero with product imagery, hamburger menu, dark accent sections, scrolling marquee, mission/vision layout, and a Yucca-style footer.
+Redesign the entire Naman Catering homepage UI/UX to match the Yucca.co.za design language — warm cream backgrounds, editorial serif typography, full-width hero with product imagery, hamburger menu, dark accent sections, scrolling marquee, mission/vision layout, and a Yucca-style footer.
 
 ## Yucca Design Reference Screenshots
 
@@ -54,7 +54,7 @@ Redesign the entire Richard Catering homepage UI/UX to match the Yucca.co.za des
 
 **Yucca Pattern**: Below hero, a section shows branded keyword chips in a row — "Quality", "Freshness", "Sustainability", etc. Warm cream bg with centered layout.
 
-For Richard Catering: Display 6 brand values: `Quality`, `Freshness`, `Presentation`, `Custom Menus`, `Sustainable`, `Innovation` — as rounded pill/chip labels in a horizontally centered flex row.
+For Naman Catering: Display 6 brand values: `Quality`, `Freshness`, `Presentation`, `Custom Menus`, `Sustainable`, `Innovation` — as rounded pill/chip labels in a horizontally centered flex row.
 
 ---
 

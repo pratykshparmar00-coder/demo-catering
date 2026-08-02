@@ -28,7 +28,7 @@ export const WhyChooseUs: React.FC = () => {
           <div className="lg:col-span-6 flex flex-col justify-center space-y-5">
             <p className="text-[15px] text-rc-textLight leading-relaxed">
               Exceptional catering is our promise to you. What doesn't meet
-              Richard Catering standards is refined until it does. Every detail
+              Naman Catering standards is refined until it does. Every detail
               matters — from sourcing the finest ingredients to the final
               presentation.
             </p>

@@ -10,14 +10,14 @@ const TESTIMONIALS = [
     name: 'Priya Sharma',
     role: 'Event Manager, Infosys',
     rating: 5,
-    text: 'Richard Catering transformed our annual conference dinner into an unforgettable experience. The food was exceptional, the presentation immaculate, and the team was incredibly professional.',
+    text: 'Naman Catering transformed our annual conference dinner into an unforgettable experience. The food was exceptional, the presentation immaculate, and the team was incredibly professional.',
     event: 'Corporate Event • 200 Guests',
   },
   {
     name: 'Anand & Meera Deshmukh',
     role: 'Wedding Couple',
     rating: 5,
-    text: 'Our wedding reception was flawless thanks to Richard Catering. The live counters were a massive hit, and every guest complimented the food. Truly world-class service.',
+    text: 'Our wedding reception was flawless thanks to Naman Catering. The live counters were a massive hit, and every guest complimented the food. Truly world-class service.',
     event: 'Wedding Reception • 350 Guests',
   },
   {

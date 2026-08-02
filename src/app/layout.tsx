@@ -16,15 +16,15 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Richard Catering | Premium Catering for Corporate, Weddings & Private Events",
+  title: "Naman Catering | Premium Catering for Corporate, Weddings & Private Events",
   description:
-    "Richard Catering delivers exceptional culinary experiences for corporate events, weddings, private gatherings, and daily office meals. Trusted by leading brands across India.",
+    "Naman Catering delivers exceptional culinary experiences for corporate events, weddings, private gatherings, and daily office meals. Trusted by leading brands across India.",
   keywords: "catering, corporate catering, wedding catering, private events, live counters, custom menus, premium catering India",
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
-    title: "Richard Catering | Premium Catering Services",
+    title: "Naman Catering | Premium Catering Services",
     description: "Exceptional culinary experiences for every occasion. Corporate, weddings, private events, and more.",
     type: "website",
   },

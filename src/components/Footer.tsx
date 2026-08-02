@@ -97,7 +97,7 @@ export const Footer: React.FC = () => {
             {/* Left: Copyright + Socials */}
             <div className="flex items-center gap-5">
               <span className="text-xs text-rc-textMuted">
-                © Richard Catering {new Date().getFullYear()}. All Rights Reserved
+                © Naman Catering {new Date().getFullYear()}. All Rights Reserved
               </span>
               <div className="flex items-center gap-3">
                 <a href="#" className="text-rc-textMuted hover:text-rc-forest transition-colors">

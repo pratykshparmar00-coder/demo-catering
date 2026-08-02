@@ -1,4 +1,4 @@
-# 🥂 Richard Catering | Premium Catering Platform
+# 🥂 Naman Catering | Premium Catering Platform
 
 An end-to-end, commercial-grade online catering booking platform designed for luxury events, corporate gatherings, weddings, and private parties. Built with a focus on **premium design aesthetics**, smooth animations, and a seamless booking experience.
 
@@ -43,7 +43,7 @@ Built with a full-stack **TypeScript** setup optimized for performance, SEO, and
 - **Language**: TypeScript
 
 ### Styling & UI
-- **Styling**: Tailwind CSS with custom Richard Catering luxury color theme (Cream, Forest Green, Gold, Charcoal).
+- **Styling**: Tailwind CSS with custom Naman Catering luxury color theme (Cream, Forest Green, Gold, Charcoal).
 - **UI Components**: shadcn/ui
 - **Icons**: Lucide React
 
