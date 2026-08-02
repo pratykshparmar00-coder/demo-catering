@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { useLenis } from 'lenis/react';
 import { ArrowRight } from 'lucide-react';
-import { fadeUp } from '../../libraries/animations/presets';
 
 const HERO_CARDS = [
   {
@@ -25,14 +25,85 @@ const HERO_CARDS = [
 
 export const Hero: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLImageElement>(null);
+  const plate1Ref = useRef<HTMLImageElement>(null); // Condiment
+  const plate2Ref = useRef<HTMLImageElement>(null); // Dal
+  const plate3Ref = useRef<HTMLImageElement>(null); // Butter Chicken
+  const plate4Ref = useRef<HTMLImageElement>(null); // Biryani
+  const plate5Ref = useRef<HTMLImageElement>(null); // Naan
+  
+  const lenis = useLenis();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
+  useEffect(() => {
+    // 1. Lock scrolling immediately
+    if (lenis) {
+      lenis.stop();
+    }
+    document.body.style.overflow = 'hidden';
 
-  const imgY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 50]);
+    // Ensure elements are initially hidden/positioned before animation
+    gsap.set(tableRef.current, { opacity: 0 });
+    gsap.set([plate1Ref.current, plate2Ref.current, plate3Ref.current, plate4Ref.current, plate5Ref.current], { opacity: 0, scale: 0.5 });
+    
+    // Set initial off-screen positions for plates
+    gsap.set(plate1Ref.current, { x: -150, y: -100 });
+    gsap.set(plate2Ref.current, { x: 150, y: -100 });
+    gsap.set(plate3Ref.current, { x: -200, y: 50 });
+    gsap.set(plate4Ref.current, { x: 200, y: 50 });
+    gsap.set(plate5Ref.current, { x: 0, y: 200 });
+
+    const headlineLines = headlineRef.current?.querySelectorAll('.line-inner');
+    gsap.set(headlineLines!, { yPercent: 100 });
+    
+    // 2. Build GSAP Timeline
+    const tl = gsap.timeline({
+      onComplete: () => {
+        // Unlock scrolling after animation completes
+        if (lenis) lenis.start();
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Phase 1: Text & Table Entrance
+    tl.to(headlineLines!, {
+      yPercent: 0,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: 'power4.out',
+      delay: 0.2
+    })
+    .to(tableRef.current, {
+      opacity: 1,
+      duration: 1.5,
+      ease: 'power2.inOut'
+    }, "-=0.8");
+
+    // Phase 2: Dishes fly in and settle
+    tl.to([plate1Ref.current, plate2Ref.current, plate3Ref.current, plate4Ref.current, plate5Ref.current], {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      y: 0,
+      duration: 1.5,
+      stagger: 0.1,
+      ease: 'power4.out'
+    }, "-=0.5");
+
+    // Phase 3: Final Reveal Scale Up
+    tl.to(imageContainerRef.current, {
+      scale: 1.05,
+      duration: 2,
+      ease: 'power2.out'
+    }, "-=0.5");
+
+    return () => {
+      tl.kill();
+      if (lenis) lenis.start();
+      document.body.style.overflow = 'auto';
+    };
+  }, [lenis]);
 
   return (
     <section
@@ -43,53 +114,76 @@ export const Hero: React.FC = () => {
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
           {/* Left: Massive Editorial Headline */}
-          <motion.div
-            style={{ y: textY }}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7"
-          >
+          <div className="lg:col-span-7" ref={headlineRef}>
             <h1 className="text-[clamp(2.8rem,6.5vw,5.5rem)] font-serif tracking-tight text-rc-charcoal leading-[1.05] font-light">
-              Crafting
-              <br />
-              Exceptional.{' '}
-              <span className="italic font-normal">Innovated</span>
-              <br />
-              for{' '}
-              <span className="italic font-normal">Culinary</span>{' '}
-              Leaders.
+              <div className="overflow-hidden py-1"><div className="line-inner">Crafting</div></div>
+              <div className="overflow-hidden py-1"><div className="line-inner">Exceptional. <span className="italic font-normal">Innovated</span></div></div>
+              <div className="overflow-hidden py-1"><div className="line-inner">for <span className="italic font-normal">Culinary</span></div></div>
+              <div className="overflow-hidden py-1"><div className="line-inner">Leaders.</div></div>
             </h1>
-          </motion.div>
+          </div>
 
-          {/* Right: Hero Image with Parallax */}
-          <motion.div
-            style={{ y: imgY }}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 relative"
-          >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-rc-charcoal/10 aspect-[3/4] max-h-[520px]">
+          {/* Right: Composited Hero Image */}
+          <div className="lg:col-span-5 relative">
+            <div 
+              ref={imageContainerRef}
+              className="relative rounded-3xl overflow-hidden shadow-2xl shadow-rc-charcoal/10 aspect-[3/4] max-h-[520px] bg-[#fdfdfd]"
+            >
+              {/* Base Table */}
               <img
-                src="/hero-food.png"
-                alt="Premium catering spread"
-                className="w-full h-full object-cover"
+                ref={tableRef}
+                src="/hero-plates/table-base.webp"
+                alt="Marble Table"
+                className="absolute inset-0 w-full h-full object-cover"
               />
+              
+              {/* Floating Plates - mix-blend-multiply hides the white background */}
+              <img 
+                ref={plate1Ref}
+                src="/hero-plates/condiment.webp"
+                alt="Condiment"
+                className="absolute top-[10%] left-[15%] w-24 h-24 object-contain mix-blend-multiply drop-shadow-xl"
+              />
+              <img 
+                ref={plate2Ref}
+                src="/hero-plates/dal.webp"
+                alt="Dal Makhani"
+                className="absolute top-[20%] right-[10%] w-32 h-32 object-contain mix-blend-multiply drop-shadow-xl"
+              />
+              <img 
+                ref={plate3Ref}
+                src="/hero-plates/butter-chicken.webp"
+                alt="Butter Chicken"
+                className="absolute top-[40%] left-[5%] w-48 h-48 object-contain mix-blend-multiply drop-shadow-xl"
+              />
+              <img 
+                ref={plate4Ref}
+                src="/hero-plates/biryani.webp"
+                alt="Biryani"
+                className="absolute top-[35%] right-[5%] w-40 h-40 object-contain mix-blend-multiply drop-shadow-xl"
+              />
+              <img 
+                ref={plate5Ref}
+                src="/hero-plates/naan.webp"
+                alt="Naan Basket"
+                className="absolute bottom-[5%] left-[20%] w-56 h-56 object-contain mix-blend-multiply drop-shadow-xl"
+              />
+
               {/* Warm overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-rc-charcoal/20 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-rc-charcoal/20 via-transparent to-transparent pointer-events-none" />
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Bottom: Three Glass/Frosted Service Cards */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full relative z-20 mt-16 lg:mt-24 pb-12 lg:pb-20"
-      >
+      <div className="w-full relative z-20 mt-16 lg:mt-24 pb-12 lg:pb-20 opacity-0" style={{ animation: 'fadeIn 1s ease-out 2.5s forwards' }}>
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(30px); }
+          }
+        `}} />
         <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {HERO_CARDS.map((card, i) => (
@@ -116,7 +210,7 @@ export const Hero: React.FC = () => {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
