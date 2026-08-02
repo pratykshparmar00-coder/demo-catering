@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { fadeUp } from '../../libraries/animations/presets';
+import { fadeUp } from '@/libraries/animations/presets';
 
 const SERVICES = [
   {

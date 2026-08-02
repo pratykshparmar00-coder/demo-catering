@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUp, Instagram, Facebook, Linkedin } from 'lucide-react';
-import { fadeUp } from '../../libraries/animations/presets';
+import { fadeUp } from '@/libraries/animations/presets';
 import { Logo } from './Logo';
 
 const SERVICE_CARDS = [

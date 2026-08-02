@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { bookingFormSchema } from '../../../../libraries/forms/bookingSchema';
+import { bookingFormSchema } from '@/libraries/forms/bookingSchema';
 
 export async function POST(request: Request) {
   const body = await request.json();

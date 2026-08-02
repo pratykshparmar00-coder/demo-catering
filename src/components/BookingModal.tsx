@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, Calendar, Clock, MapPin, Phone, Mail, User, AlertCircle, Loader2 } from 'lucide-react';
-import { bookingFormSchema, BookingFormData } from '../../libraries/forms/bookingSchema';
-import { PriceBreakdown } from '../../libraries/pricing/calculator';
-import { modalPop } from '../../libraries/animations/presets';
-import { Button } from '../../libraries/ui';
+import { bookingFormSchema, BookingFormData } from '@/libraries/forms/bookingSchema';
+import { PriceBreakdown } from '@/libraries/pricing/calculator';
+import { modalPop } from '@/libraries/animations/presets';
+import { Button } from '@/libraries/ui';
 
 interface BookingModalProps {
   isOpen: boolean;

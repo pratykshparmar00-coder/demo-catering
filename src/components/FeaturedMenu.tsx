@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { staggerCards, fadeUp } from '../../libraries/animations/presets';
+import { staggerCards, fadeUp } from '@/libraries/animations/presets';
 
 const MENU_ITEMS = [
   { name: 'Paneer Tikka Angara', type: 'veg', price: '₹65/pax', category: 'Starter', image: '/menu/paneer-tikka.png' },
