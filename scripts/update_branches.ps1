@@ -3,6 +3,7 @@ git checkout main
 git pull origin main
 
 $branches = @(
+    "feature/nextjs-migration",
     "feature/skygod-hero-animations",
     "feature/skygod-booking-form",
     "feature/skygod-ui-components",
