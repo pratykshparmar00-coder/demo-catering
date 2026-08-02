@@ -37,11 +37,11 @@ export const Hero: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-rc-cream pt-20 lg:pt-20"
+      className="relative w-full overflow-hidden bg-rc-cream pt-32 lg:pt-40"
     >
       {/* Main Hero Content */}
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 w-full relative z-10 flex-1 flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full py-12 lg:py-0">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
           {/* Left: Massive Editorial Headline */}
           <motion.div
             style={{ y: textY }}
@@ -88,7 +88,7 @@ export const Hero: React.FC = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full relative z-20 pb-8 lg:pb-12"
+        className="w-full relative z-20 mt-16 lg:mt-24 pb-12 lg:pb-20"
       >
         <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
