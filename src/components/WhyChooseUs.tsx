@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { fadeUp } from '../../libraries/animations/presets';
+import { fadeUp } from '@/libraries/animations/presets';
 
 export const WhyChooseUs: React.FC = () => {
   return (

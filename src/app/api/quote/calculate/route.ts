@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { calculateCateringQuote } from '../../../../../libraries/pricing/calculator';
+import { calculateCateringQuote } from '@/libraries/pricing/calculator';
 
 export async function POST(request: Request) {
   try {

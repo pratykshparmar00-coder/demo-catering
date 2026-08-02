@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
-import { fadeUp, staggerCards } from '../../libraries/animations/presets';
+import { fadeUp, staggerCards } from '@/libraries/animations/presets';
 
 const TESTIMONIALS = [
   {

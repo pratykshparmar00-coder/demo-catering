@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Users, Plus, Check, Trash2, Sliders, ChevronRight, Shield, Info, Sparkles } from 'lucide-react';
-import { Button, Card, Badge } from '../../libraries/ui';
-import { MenuItem, PriceBreakdown, calculateCateringQuote } from '../../libraries/pricing/calculator';
+import { Button, Card, Badge } from '@/libraries/ui';
+import { MenuItem, PriceBreakdown, calculateCateringQuote } from '@/libraries/pricing/calculator';
 
 interface MenuBuilderProps {
   menuItems: MenuItem[];

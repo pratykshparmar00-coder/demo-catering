@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, MessageSquare, Phone } from 'lucide-react';
-import { fadeUp, staggerCards } from '../../libraries/animations/presets';
+import { fadeUp, staggerCards } from '@/libraries/animations/presets';
 
 export const Consultation: React.FC = () => {
   return (
